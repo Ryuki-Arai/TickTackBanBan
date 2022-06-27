@@ -6,23 +6,6 @@ public class LayoutList : MonoBehaviour
 {
     List<GameObject> layoutList = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnValidate()
-    {
-        
-    }
-
     public void SortLayout()
     {
         if (layoutList == null) return;
@@ -37,7 +20,6 @@ public class LayoutList : MonoBehaviour
         var obj = mapPile.GetComponent<MapPile>();
         if (obj.TileMode == TileMode.Map)
         {
-            Debug.Log("AddList");
             layoutList.Add(obj.gameObject);
         }
         SortLayout();

@@ -66,11 +66,7 @@ public class MapPile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetType() == typeof(LayoutList))
-        {
-            this.gameObject.transform.parent = other.transform;
-            other.GetComponent<LayoutList>().AddLayoutList(this.gameObject);
-        }
+
     }
 
     [Serializable]
