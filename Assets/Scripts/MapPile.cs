@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapPile : MonoBehaviour
 {
     [SerializeField] TileState _tileState;
+    [SerializeField] TileMode _tileMode;
     [SerializeField] MeshRenderer _tileMesh;
     [SerializeField] TileMaterial _tileMaterial;
 
@@ -15,12 +16,38 @@ public class MapPile : MonoBehaviour
         set { _tileState = value; }
     }
 
-    private void OnValidate()
+    public TileMode TileMode
     {
-        SetTile();
+        get { return _tileMode; }
+        set { _tileMode = value; }
     }
 
-    private void SetTile()
+    private void OnValidate()
+    {
+        InitTile();
+        CheckState();
+    }
+
+    private void CheckState()
+    {
+        if (_tileMode == TileMode.Stay)
+        {
+
+        }
+        else if (_tileMode == TileMode.Injection)
+        {
+
+        }
+        else if (_tileMode == TileMode.Map)
+        {
+            if(transform.parent.gameObject != null)
+            {
+                transform.parent.gameObject.GetComponent<LayoutList>().AddLayoutList(this.gameObject);
+            }
+        }
+    }
+
+    private void InitTile()
     {
         if (_tileMesh == null) return;
         if (_tileState == TileState.Cross)
@@ -34,6 +61,15 @@ public class MapPile : MonoBehaviour
         else if (_tileState == TileState.RightTurn)
         {
             _tileMesh.material = _tileMaterial.rightTurn;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetType() == typeof(LayoutList))
+        {
+            this.gameObject.transform.parent = other.transform;
+            other.GetComponent<LayoutList>().AddLayoutList(this.gameObject);
         }
     }
 

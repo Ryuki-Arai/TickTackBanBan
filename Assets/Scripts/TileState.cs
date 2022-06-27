@@ -4,3 +4,10 @@ public enum TileState
     LeftTurn,
     Cross,
 }
+
+public enum TileMode
+{
+    Stay,
+    Injection,
+    Map,
+}
