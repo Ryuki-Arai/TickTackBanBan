@@ -22,6 +22,12 @@ public class MapPile : MonoBehaviour
         set { _tileMode = value; }
     }
 
+    void Start()
+    {
+        InitTile();
+        CheckState();
+    }
+
     private void OnValidate()
     {
         InitTile();
@@ -36,7 +42,7 @@ public class MapPile : MonoBehaviour
         }
         else if (_tileMode == TileMode.Injection)
         {
-
+            
         }
         else if (_tileMode == TileMode.Map)
         {
@@ -66,7 +72,17 @@ public class MapPile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_tileMode == TileMode.Injection)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("");
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
 
+            }
+        }
     }
 
     [Serializable]
