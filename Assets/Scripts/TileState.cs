@@ -1,8 +1,8 @@
 public enum TileState
 {
-    RightTurn = 0,
-    LeftTurn = 1,
-    Cross = 2,
+    RightTurn,
+    LeftTurn,
+    Cross,
 }
 
 public enum TileMode

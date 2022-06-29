@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
-public class Footer : MonoBehaviour
+public class Footer : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] MapPile _pile;
     [SerializeField] int _pileCount;
@@ -31,6 +32,11 @@ public class Footer : MonoBehaviour
         }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+
+    }
+
     void CelectPile()
     {
         GameObject clickedGameObject = null;
@@ -42,7 +48,7 @@ public class Footer : MonoBehaviour
         {
             clickedGameObject = hit.collider.gameObject;
         }
-
+        Debug.Log(clickedGameObject.name);
         clickedGameObject.GetComponent<MapPile>().TileMode = TileMode.Injection;
     }
 

@@ -28,6 +28,20 @@ public class MapPile : MonoBehaviour
         CheckState();
     }
 
+    void Update()
+    {
+        if (_tileMode == TileMode.Injection)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                this.gameObject.transform.parent = null;
+                var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Debug.Log($"{point.x},{0.0f},{point.z}");
+                this.transform.position = new Vector3(point.x,0.0f,point.z);
+            }
+        }
+    }
+
     private void OnValidate()
     {
         InitTile();
@@ -70,20 +84,18 @@ public class MapPile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_tileMode == TileMode.Injection)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("");
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag != "Layout") return;
+    //    if (_tileMode == TileMode.Injection)
+    //    {
+    //        if (Input.GetMouseButtonUp(0))
+    //        {
+    //            transform.position = other.transform.position;
+    //            _tileMode = TileMode.Map;
+    //        }
+    //    }
+    //}
 
     [Serializable]
     public class TileMaterial
