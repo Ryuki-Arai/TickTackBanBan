@@ -18,38 +18,19 @@ public class Footer : MonoBehaviour, IPointerClickHandler
         for(int i = 0; i < _pileCount; i++)
         {
             _stayMap[i] = Instantiate(_pile, transform);
+            _stayMap[i].name = $"StayMap{i+1}";
             _stayMap[i].transform.position = new Vector3(-_pileCount / 2 + i + 0.5f, transform.position.y, transform.position.z);
             _stayMap[i].TileState = ChangeState();
             _stayMap[i].TileMode = TileMode.Stay;
         }
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CelectPile();
-        }
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
-
-    }
-
-    void CelectPile()
-    {
-        GameObject clickedGameObject = null;
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit = new RaycastHit();
-
-        if (Physics.Raycast(ray, out hit))
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent<MapPile>(out MapPile mapPile))
         {
-            clickedGameObject = hit.collider.gameObject;
+            mapPile.TileMode = TileMode.Injection;
         }
-        Debug.Log(clickedGameObject.name);
-        clickedGameObject.GetComponent<MapPile>().TileMode = TileMode.Injection;
     }
 
     private void Replenish()

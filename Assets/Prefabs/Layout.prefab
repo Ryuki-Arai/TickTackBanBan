@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2271618573561442369, guid: f322cfbae9de6b047b01216afd7a2085, type: 3}
       propertyPath: _tileMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2271618573561442373, guid: f322cfbae9de6b047b01216afd7a2085, type: 3}
       propertyPath: m_RootOrder

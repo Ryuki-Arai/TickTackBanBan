@@ -35,9 +35,11 @@ public class MapPile : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 this.gameObject.transform.parent = null;
-                var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Debug.Log($"{point.x},{0.0f},{point.z}");
-                this.transform.position = new Vector3(point.x,0.0f,point.z);
+                var point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0.0f, Input.mousePosition.y));
+                Debug.Log(point);
+                point.y = 0f;
+                //Debug.Log(point);
+                this.transform.position = point;
             }
         }
     }
